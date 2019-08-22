@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+${ONOS_ROOT}/tools/build/onos-buck -V
+
+for package in `cat ${ONOS_ROOT}/tools/build/publish-target-list ${ONOS_ROOT}/tools/build/publish-test-target-list | grep -v '#'`; do
+    ${ONOS_ROOT}/tools/build/onos-buck publish --to-local-repo ${package}
+done
+
+
